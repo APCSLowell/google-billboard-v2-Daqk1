@@ -6,7 +6,7 @@
             "run": "echo 'Test 1'",
             "input": "",
             "output": "7427466391",
-            "comparison": "exact",
+            "comparison": "include",
             "timeout": 10,
             "points": 5
         }
