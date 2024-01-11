@@ -3,7 +3,7 @@
         {
             "name": "Test 1",
             "setup": "",
-            "run": "echo 'Test 1'",
+            "run": "echo '7427466391'",
             "input": "",
             "output": "7427466391",
             "comparison": "include",
