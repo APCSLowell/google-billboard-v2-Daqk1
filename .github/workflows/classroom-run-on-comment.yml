@@ -1,8 +1,9 @@
 name: GitHub Classroom Workflow
 
 on:
-  issue_comment:                                     
-    types: [created, edited, deleted]
+  push:
+    paths:
+      - '**/Billboard.java'
 
 permissions:
   checks: write
@@ -10,12 +11,27 @@ permissions:
   contents: read
 
 jobs:
-  # job to run autograding
-  grade:
-    name: Autograding
-    if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, 'run grading') }}
+  add_comment_and_run_grading:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: education/autograding@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Add Comment
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const issue_number = 123; // Replace with the issue number you want to comment on
+            const comment_body = 'run grading';
+            github.issues.createComment({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment_body
+            });
+
+      - name: Run Autograding
+        if: always()
+        uses: education/autograding@v1
