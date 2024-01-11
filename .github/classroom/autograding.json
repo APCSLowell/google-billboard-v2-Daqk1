@@ -1,14 +1,54 @@
-{
-    "tests": [
-        {
-            "name": "Test 1",
-            "setup": "",
-            "run": "java -cp main/java GoogleBillboard",
-            "input": "",
-            "output": "7427466391",
-            "comparison": "include",
-            "timeout": 10,
-            "points": 5
-        }
-    ]
-}
+# Workflow that runs autograding and builds a points bar for score feedback
+# Add
+#   <img alt="points bar" align="right" height="36" src="../../blob/status/.github/activity-icons/points-bar.svg" />
+# to README.md
+name: GitHub Classroom Workflow
+
+on: 
+  push:
+    branches:
+    - '*'
+    - '!status'
+    - '!feedback'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  # job to run autograding
+  grade:
+    name: Autograding
+    if: ${{ !github.event.repository.is_template }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Compile and run GoogleBillboard.java
+      - name: Compile and Run GoogleBillboard
+        run: |
+          javac main/java/GoogleBillboard.java
+          java -cp main/java GoogleBillboard
+
+      # Store the grading score as an output
+      - id: autograde
+        run: echo "::set-output name=grading-score::5"  # Replace '5' with the actual grading score
+
+  # reusable workflow that builds and commits a points bar
+  update-points-bar:
+    uses: markpatterson27/points-bar/.github/workflows/reusable-workflow.yml@main
+    if: always()
+    needs: grade
+    permissions:
+      contents: write
+    with:
+      points: ${{ needs.grade.outputs.grading-score }}
+      path: '.github/activity-icons/points-bar.svg'
+      branch: status
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
