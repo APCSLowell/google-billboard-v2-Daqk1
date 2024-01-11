@@ -5,7 +5,7 @@
             "setup": "",
             "run": "echo 'Test 1'",
             "input": "",
-            "output": "",
+            "output": "7.42746639E9",
             "comparison": "included",
             "timeout": 10,
             "points": 5
