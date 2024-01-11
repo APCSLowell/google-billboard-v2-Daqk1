@@ -4,7 +4,7 @@ public class Main {
       for(int i = 2; i < e.length()-10; i++){
         double test = Double.parseDouble(e.substring(i,i+10));
         if(isPrime(test) == true){
-          System.out.println(test);
+          System.out.print(test);
           break;
         }
       }
