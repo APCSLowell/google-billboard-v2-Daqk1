@@ -3,7 +3,7 @@
         {
             "name": "Test 1",
             "setup": "",
-            "run": "main/java/GoogleBillboard.java",
+            "run": main/java/GoogleBillboard.java,
             "input": "",
             "output": "7427466391",
             "comparison": "include",
@@ -12,4 +12,3 @@
         }
     ]
 }
-#https://github.com/orgs/community/discussions/68249
