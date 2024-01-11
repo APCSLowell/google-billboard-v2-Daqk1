@@ -1,0 +1,53 @@
+# Workflow that runs autograding and builds a points bar for score feedback
+# Add
+#   <img alt="points bar" align="right" height="36" src="../../blob/status/.github/activity-icons/points-bar.svg" />
+# to README.md
+name: GitHub Classroom Workflow
+
+on: 
+  push:
+    branches:
+    - '*'
+    - '!status'
+    - '!feedback'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  # job to run autograding
+  grade:
+    name: Autograding
+    if: ${{ !github.event.repository.is_template }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      
+      # run grading
+      # add id to step so outputs can be referenced
+      - uses: education/autograding@v1
+        name: "** Grading and Feedback **"
+        id: autograde
+
+    outputs:
+      grading-score: ${{ steps.autograde.outputs.Points }}
+
+  # reusable workflow that builds and commits a points bar
+  update-points-bar:
+    uses: markpatterson27/points-bar/.github/workflows/reusable-workflow.yml@main
+    if: always()
+    needs: grade
+    permissions:
+      contents: write
+    with:
+      points: ${{ needs.grade.outputs.grading-score }}
+      path: '.github/activity-icons/points-bar.svg'
+      branch: status
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
