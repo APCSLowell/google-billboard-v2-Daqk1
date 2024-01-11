@@ -3,7 +3,7 @@
         {
             "name": "Test 1",
             "setup": "",
-            "run": "Google Billboard",
+            "run": "echo 'Test 1'",
             "input": "",
             "output": "7427466391",
             "comparison": "include",
