@@ -28,7 +28,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      
+
       # Compile and run GoogleBillboard.java
       - name: Compile and Run GoogleBillboard
         run: |
@@ -38,6 +38,10 @@ jobs:
       # Store the grading score as an output
       - id: autograde
         run: echo "::set-output name=grading-score::5"  # Replace '5' with the actual grading score
+
+      # Save the output in a JSON file
+      - name: Save Output as JSON
+        run: echo '{"gradingScore": 5}' > autograde_output.json
 
   # reusable workflow that builds and commits a points bar
   update-points-bar:
