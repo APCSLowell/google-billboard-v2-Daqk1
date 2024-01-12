@@ -24,21 +24,26 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set Package and Class in Java file
-        run: echo "package main.java; public class GoogleBillboard { }" > $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-        
+        run: |
+          echo "package main.java;" > $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          echo "public class GoogleBillboard {" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          echo "    public static void main(String[] args) {" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          echo "        // Your main method code here" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          echo "    }" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          echo "}" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+
       - name: Set Permissions
         run: chmod +x $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
 
       - name: Compile and Run GoogleBillboard
         run: |
-              javac $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-
+          javac $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+         
 
       - name: Run Grading
         uses: education/autograding@v1
         with:
-          name: "Grading and Feedback"
-          id: autograde
+          token: ${{ secrets.GITHUB_TOKEN }}
 
     outputs:
       grading-score: ${{ steps.autograde.outputs.Points }}
