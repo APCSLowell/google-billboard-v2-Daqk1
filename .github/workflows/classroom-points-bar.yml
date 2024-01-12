@@ -37,7 +37,7 @@ jobs:
       - name: Compile and Run GoogleBillboard
         run: |
           javac main/java/GoogleBillboard.java
-          java -cp main/java main.java.GoogleBillboard
+          java -cp main/java main/java/GoogleBillboard.java
 
       # run grading
       # add id to step so outputs can be referenced
