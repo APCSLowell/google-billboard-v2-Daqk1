@@ -36,7 +36,7 @@ jobs:
           ls -l $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
       
       # Set the correct package structure in the Java file
-      - name: Set Package in Java file
+      - name: Set Package and Class in Java file
         run: echo "package main.java;" > main/java/GoogleBillboard.java
 
       # Compile and Run GoogleBillboard.java
