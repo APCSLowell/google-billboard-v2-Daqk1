@@ -27,8 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
+      - name: Set Permissions
+        run: |
+          chmod +x $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          ls -l $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+      
       # Set the correct package structure in the Java file
       - name: Set Package in Java file
         run: echo "package main.java;" > main/java/GoogleBillboard.java
