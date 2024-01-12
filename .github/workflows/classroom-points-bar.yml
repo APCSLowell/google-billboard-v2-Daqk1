@@ -35,10 +35,10 @@ jobs:
           chmod +x $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
           ls -l $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
 
-      - name: Compile and Run GoogleBillboard
+     - name: Compile and Run GoogleBillboard
         run: |
           javac $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          java -cp $GITHUB_WORKSPACE/main/java main/java/GoogleBillboard.java
+          java -cp $GITHUB_WORKSPACE/main/java main.java.GoogleBillboard
 
       # run grading
       # add id to step so outputs can be referenced
