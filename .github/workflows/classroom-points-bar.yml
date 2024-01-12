@@ -37,7 +37,7 @@ jobs:
       - name: Compile and Create JAR
         run: |
           javac main/java/GoogleBillboard.java
-          jar cfe GoogleBillboard.jar main.java.GoogleBillboard main/java/GoogleBillboard.java
+          jar cfe GoogleBillboard.jar main/java/GoogleBillboard.java
 
       # Run the JAR file
       - name: Run JAR file
