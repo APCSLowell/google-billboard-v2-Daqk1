@@ -1,7 +1,4 @@
-# Workflow that runs autograding and builds a points bar for score feedback
-# Add
-#   <img alt="points bar" align="right" height="36" src="../../blob/status/.github/activity-icons/points-bar.svg" />
-# to README.md
+
 name: GitHub Classroom Workflow
 
 on: 
@@ -11,7 +8,6 @@ on:
     - '!status'
     - '!feedback'
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 permissions:
@@ -20,7 +16,6 @@ permissions:
   contents: read
 
 jobs:
-  # job to run autograding
   grade:
     name: Autograding
     if: ${{ !github.event.repository.is_template }}
@@ -29,21 +24,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Compile and run GoogleBillboard.java
       - name: Compile and Run GoogleBillboard
         run: |
           javac main/java/GoogleBillboard.java
           java -cp main/java GoogleBillboard
 
-      # Store the grading score as an output
       - id: autograde
         run: echo "::set-output name=grading-score::5"  # Replace '5' with the actual grading score
 
-      # Save the output in a JSON file
       - name: Save Output as JSON
         run: echo '{"gradingScore": 5}' > autograde_output.json
 
-  # reusable workflow that builds and commits a points bar
   update-points-bar:
     uses: markpatterson27/points-bar/.github/workflows/reusable-workflow.yml@main
     if: always()
