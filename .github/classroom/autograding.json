@@ -6,7 +6,7 @@
             "run": "main/java/GoogleBillboard.java",
             "input": "",
             "output": "7427466391",
-            "comparison": "include",
+            "comparison": "Exact",
             "timeout": 10,
             "points": 5
         }
