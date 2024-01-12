@@ -29,9 +29,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Run GoogleBillboard using java directly
+      # Run GoogleBillboard using java directly with correct classpath
       - name: Run GoogleBillboard
-        run: java -cp main/java GoogleBillboard
+        run: java -cp $GITHUB_WORKSPACE/main/java GoogleBillboard
 
       # run grading
       # add id to step so outputs can be referenced
