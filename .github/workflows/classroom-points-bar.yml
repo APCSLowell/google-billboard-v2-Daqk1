@@ -30,6 +30,9 @@ jobs:
           echo "        System.out.println(\"Hello, GitHub Actions!\");" >> ${{ github.workspace }}/main/java/GoogleBillboard.java
           echo "    }" >> ${{ github.workspace }}/main/java/GoogleBillboard.java
           echo "}" >> ${{ github.workspace }}/main/java/GoogleBillboard.java
+      - name: Set Package and Class in Java file
+        run: |
+          sed 's|// Placeholder for dynamic code|'"Your dynamic code here"'|' MainCodeTemplate.java > ${{ github.workspace }}/main/java/GoogleBillboard.java
 
 
 
