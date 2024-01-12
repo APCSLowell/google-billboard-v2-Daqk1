@@ -31,15 +31,14 @@ jobs:
 
       # Set execute permission
       - name: Set Execute Permission
-        run: chmod +x main/java/GoogleBillboard.java
+        run: |
+          chmod +x main/java/GoogleBillboard.java
 
-      # Compile GoogleBillboard.java
-      - name: Compile GoogleBillboard
-        run: javac main/java/GoogleBillboard.java
-
-      # Run GoogleBillboard
-      - name: Run GoogleBillboard
-        run: java -cp main/java GoogleBillboard
+      # Compile and Run GoogleBillboard
+      - name: Compile and Run GoogleBillboard
+        run: |
+          javac main/java/GoogleBillboard.java
+          java -cp main/java GoogleBillboard
 
       # run grading
       # add id to step so outputs can be referenced
