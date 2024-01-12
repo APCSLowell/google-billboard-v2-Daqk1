@@ -1,7 +1,3 @@
-# Workflow that runs autograding and builds a points bar for score feedback
-# Add
-#   <img alt="points bar" align="right" height="36" src="../../blob/status/.github/activity-icons/points-bar.svg" />
-# to README.md
 name: GitHub Classroom Workflow
 
 on: 
@@ -11,7 +7,6 @@ on:
       - '!status'
       - '!feedback'
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 permissions:
@@ -20,31 +15,27 @@ permissions:
   contents: read
 
 jobs:
-  # job to run autograding
   grade:
     name: Autograding
-    if: ${{ !github.event.repository.is_template }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set Permissions
-        run: |
-          chmod +x $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          ls -l $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+      - name: Set Package and Class in Java file
+        run: echo "package main.java; public class GoogleBillboard { }" > $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
 
-     - name: Compile and Run GoogleBillboard
+      - name: Compile and Run GoogleBillboard
         run: |
           javac $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
           java -cp $GITHUB_WORKSPACE/main/java main.java.GoogleBillboard
 
-      # run grading
-      # add id to step so outputs can be referenced
-      - uses: education/autograding@v1
-        name: "** Grading and Feedback **"
-        id: autograde
+      - name: Run Grading
+        uses: education/autograding@v1
+        with:
+          name: "** Grading and Feedback **"
+          id: autograde
 
     outputs:
       grading-score: ${{ steps.autograde.outputs.Points }}
