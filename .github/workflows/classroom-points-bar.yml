@@ -21,7 +21,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
 
       - name: Set Package and Class in Java file
