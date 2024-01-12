@@ -44,7 +44,7 @@ jobs:
       # add id to step so outputs can be referenced
       - uses: education/autograding@v1
         name: "** Grading and Feedback **"
-        id: autograde
+        id: autograding
 
     outputs:
       grading-score: ${{ steps.autograde.outputs.Points }}
