@@ -33,15 +33,11 @@ jobs:
       - name: Set Package in Java file
         run: echo "package main.java;" > main/java/GoogleBillboard.java
 
-      # Compile GoogleBillboard.java and create JAR file
-      - name: Compile and Create JAR
+      # Compile and Run GoogleBillboard.java
+      - name: Compile and Run GoogleBillboard
         run: |
           javac main/java/GoogleBillboard.java
-          jar cfe GoogleBillboard.jar main/java/GoogleBillboard.java
-
-      # Run the JAR file
-      - name: Run JAR file
-        run: java -jar GoogleBillboard.jar
+          java -cp main/java main.java.GoogleBillboard
 
       # run grading
       # add id to step so outputs can be referenced
