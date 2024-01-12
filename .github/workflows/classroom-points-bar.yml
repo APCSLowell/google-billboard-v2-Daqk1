@@ -1,5 +1,3 @@
-# ... (other parts of your workflow)
-
 jobs:
   # job to run autograding
   grade:
@@ -9,7 +7,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      
+
       # Set execute permission
       - name: Set Execute Permission
         run: chmod +x main/java/GoogleBillboard.java
@@ -30,5 +28,3 @@ jobs:
 
     outputs:
       grading-score: ${{ steps.autograde.outputs.Points }}
-
-# ... (other parts of your workflow)
