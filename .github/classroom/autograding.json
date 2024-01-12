@@ -1,49 +1,14 @@
-
-name: GitHub Classroom Workflow
-
-on: 
-  push:
-    branches:
-    - '*'
-    - '!status'
-    - '!feedback'
-
-  workflow_dispatch:
-
-permissions:
-  checks: write
-  actions: read
-  contents: read
-
-jobs:
-  grade:
-    name: Autograding
-    if: ${{ !github.event.repository.is_template }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Compile and Run GoogleBillboard
-        run: |
-          javac main/java/GoogleBillboard.java
-          java -cp main/java GoogleBillboard
-
-      - id: autograde
-        run: echo "::set-output name=grading-score::5"  # Replace '5' with the actual grading score
-
-      - name: Save Output as JSON
-        run: echo '{"gradingScore": 5}' > autograde_output.json
-
-  update-points-bar:
-    uses: markpatterson27/points-bar/.github/workflows/reusable-workflow.yml@main
-    if: always()
-    needs: grade
-    permissions:
-      contents: write
-    with:
-      points: ${{ needs.grade.outputs.grading-score }}
-      path: '.github/activity-icons/points-bar.svg'
-      branch: status
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+{
+    "tests": [
+        {
+            "name": "Test 1",
+            "setup": "",
+            "run": "java GoogleBillboard",
+            "input": "",
+            "output": "7427466391",
+            "comparison": "include",
+            "timeout": 10,
+            "points": 5
+        }
+    ]
+}
