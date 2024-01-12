@@ -5,7 +5,7 @@
             "setup": "",
             "run": "main/java/GoogleBillboard.java",
             "input": "",
-            "output": "7427466391",
+            "output": "7.427466391E9",
             "comparison": "Exact",
             "timeout": 10,
             "points": 5
