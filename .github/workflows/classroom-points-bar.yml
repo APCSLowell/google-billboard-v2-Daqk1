@@ -25,19 +25,19 @@ jobs:
 
       - name: Set Package and Class in Java file
         run: |
-          echo "public class GoogleBillboard {" > $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          echo "    public static void main(String[] args) {" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          echo "        // Your main method code here" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          echo "    }" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          echo "}" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          echo "public class GoogleBillboard {" > $GITHUB_WORKSPACE/main/java/GoogleBillboard
+          echo "    public static void main(String[] args) {" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard
+          echo "        // Your main method code here" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard
+          echo "    }" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard
+          echo "}" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard
 
 
       - name: Set Permissions
-        run: chmod +x $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+        run: chmod +x $GITHUB_WORKSPACE/main/java/GoogleBillboard
 
       - name: Compile and Run GoogleBillboard
         run: |
-          javac $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          javac $GITHUB_WORKSPACE/main/java/GoogleBillboard
 
       - name: Run Grading
         uses: education/autograding@v1
