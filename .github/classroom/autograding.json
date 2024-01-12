@@ -3,7 +3,7 @@
         {
             "name": "Test 1",
             "setup": "",
-            "run": "javac main/java/GoogleBillboard.java",
+            "run": "main/java/GoogleBillboard.java",
             "input": "",
             "output": "7427466391",
             "comparison": "include",
