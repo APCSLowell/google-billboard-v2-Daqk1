@@ -25,6 +25,9 @@ jobs:
 
       - name: Set Package and Class in Java file
         run: echo "package main.java; public class GoogleBillboard { }" > $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+        
+      - name: Set Permissions
+        run: chmod +x $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
 
       - name: Compile and Run GoogleBillboard
         run: |
@@ -34,7 +37,7 @@ jobs:
       - name: Run Grading
         uses: education/autograding@v1
         with:
-          name: "** Grading and Feedback **"
+          name: "Grading and Feedback"
           id: autograde
 
     outputs:
