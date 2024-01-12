@@ -25,9 +25,7 @@ jobs:
 
       - name: Set Package and Class in Java file
         run: |
-          echo "package main.java;" > $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          echo "" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          echo "public class GoogleBillboard {" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+          echo "public class GoogleBillboard {" > $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
           echo "    public static void main(String[] args) {" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
           echo "        // Your main method code here" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
           echo "    }" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
