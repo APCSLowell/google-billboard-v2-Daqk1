@@ -22,17 +22,20 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+      - name: Fetch Latest Code
+        run: |
+          # Ensure you are in the correct directory
+          cd ${{ github.workspace }}/main/java/
+          # Fetch the latest version of GoogleBillboard.java
+          git checkout -- GoogleBillboard.java
 
       - name: Set Package and Class in Java file
         run: |
-          echo "public class GoogleBillboard {" > ${{ github.workspace }}/main/java/GoogleBillboard.java
-          echo "    public static void main(String[] args) {" >> ${{ github.workspace }}/main/java/GoogleBillboard.java
-          echo "        System.out.println(\"Hello, GitHub Actions!\");" >> ${{ github.workspace }}/main/java/GoogleBillboard.java
-          echo "    }" >> ${{ github.workspace }}/main/java/GoogleBillboard.java
-          echo "}" >> ${{ github.workspace }}/main/java/GoogleBillboard.java
-      - name: Set Package and Class in Java file
-        run: |
-          sed 's|// Placeholder for dynamic code|'"Your dynamic code here"'|' MainCodeTemplate.java > ${{ github.workspace }}/main/java/GoogleBillboard.java
+          # Fetch the latest version of GoogleBillboard.java
+          git checkout -- GoogleBillboard.java
+          # Replace the dynamic code in the file
+          sed 's|// Placeholder for dynamic code|'"Your dynamic code here"'|' GoogleBillboard.java > GoogleBillboard_temp.java
+          mv GoogleBillboard_temp.java GoogleBillboard.java
 
 
 
