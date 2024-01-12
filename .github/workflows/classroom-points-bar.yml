@@ -28,8 +28,9 @@ jobs:
 
       - name: Compile and Run GoogleBillboard
         run: |
-          javac $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
-          java -cp $GITHUB_WORKSPACE/main/java main/java/GoogleBillboard.java
+              javac $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
+              java -cp $GITHUB_WORKSPACE/main/java main.java.GoogleBillboard
+
 
       - name: Run Grading
         uses: education/autograding@v1
