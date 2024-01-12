@@ -33,6 +33,7 @@ jobs:
           echo "    }" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
           echo "}" >> $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
 
+
       - name: Set Permissions
         run: chmod +x $GITHUB_WORKSPACE/main/java/GoogleBillboard.java
 
