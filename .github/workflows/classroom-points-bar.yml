@@ -29,6 +29,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Set the correct package structure in the Java file
+      - name: Set Package in Java file
+        run: echo "package main.java;" > main/java/GoogleBillboard.java
+
       # Compile GoogleBillboard.java and create JAR file
       - name: Compile and Create JAR
         run: |
